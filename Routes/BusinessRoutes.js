@@ -11,14 +11,13 @@ function isAuthenticated(req, res, next) {
 }
 
 router.post('/', isAuthenticated, async (req, res) => {
-  console.log('reached me');
   req.body.author = req.user._id;
   const business = await new Business(req.body).save();
   res.json(business);
 });
 
 router.get('/', async (req, res) => {
-  const Businesses = await Business.find().populate('author review');
+  const Businesses = await Business.find().populate('author');
   res.json(Businesses);
 });
 

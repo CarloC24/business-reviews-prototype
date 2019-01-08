@@ -14,9 +14,7 @@ server.listen(port, () => {
   console.log(`port running on ${port}`);
 });
 require('./public/passport');
-require('./models/Business');
-require('./models/Users');
-require('./models/Reviews');
+
 server.use('/user', UserRoutes);
 server.use('/business', BusinessRoutes);
 server.use('/reviews', ReviewRoutes);

@@ -1,13 +1,13 @@
 {
   "name": "business-reviews",
   "version": "1.0.0",
-  "description": "",
+  "description": "Business",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "carlo",
   "license": "ISC",
   "dependencies": {
     "connect-mongo": "^2.0.3",
