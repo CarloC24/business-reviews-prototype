@@ -6,6 +6,8 @@ const port = 4000 || process.env.PORT;
 const Business = require('./models/Business');
 const ConfigMiddleware = require('./Middleware');
 const UserRoutes = require('./Routes/UserRoutes');
+const BusinessRoutes = require('./Routes/BusinessRoutes');
+const ReviewRoutes = require('./Routes/ReviewsRoutes');
 
 ConfigMiddleware(server);
 server.listen(port, () => {
@@ -16,9 +18,12 @@ require('./models/Business');
 require('./models/Users');
 require('./models/Reviews');
 server.use('/user', UserRoutes);
+server.use('/business', BusinessRoutes);
+server.use('/reviews', ReviewRoutes);
 
 mongoose.connect(
-  'mongodb://carlo:carloc1@ds049436.mlab.com:49436/business-reviews-labs'
+  'mongodb://carlo:carloc1@ds049436.mlab.com:49436/business-reviews-labs',
+  { useNewUrlParser: true }
 );
 
 mongoose.connection.once('open', () => {

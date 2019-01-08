@@ -16,6 +16,7 @@ module.exports = server => {
         store: new MongoStore({ mongooseConnection: mongoose.connection })
       })
     ),
+    server.use(express.urlencoded({ extended: true })),
     server.use(passport.initialize()),
     server.use(passport.session()),
     server.use(express.json());
