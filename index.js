@@ -2,7 +2,7 @@ const express = require('express');
 
 const server = express();
 const mongoose = require('mongoose');
-const port = 4000 || process.env.PORT;
+const port = process.env.PORT || 4000;
 const Business = require('./models/Business');
 const ConfigMiddleware = require('./Middleware');
 const UserRoutes = require('./Routes/UserRoutes');
