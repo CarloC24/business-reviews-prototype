@@ -4,12 +4,19 @@ const server = express();
 const mongoose = require('mongoose');
 const port = 4000 || process.env.PORT;
 const Business = require('./models/Business');
+const ConfigMiddleware = require('./Middleware');
+const UserRoutes = require('./Routes/UserRoutes');
 
+ConfigMiddleware(server);
 server.listen(port, () => {
   console.log(`port running on ${port}`);
 });
+require('./public/passport');
+require('./models/Business');
+require('./models/Users');
+require('./models/Reviews');
+server.use('/user', UserRoutes);
 
-server.use(express.json());
 mongoose.connect(
   'mongodb://carlo:carloc1@ds049436.mlab.com:49436/business-reviews-labs'
 );
@@ -19,10 +26,13 @@ mongoose.connection.once('open', () => {
 });
 
 server.get('/', async (req, res) => {
-  const businesses = await Business.find();
+  if (req.isAuthenticated()) {
+    return res.json({ message: req.user });
+  }
+  return res.json({ message: 'Not authenticated please login' });
 });
 
-server.post('/', async (req, res) => {
-  const business = await new Business(req.body);
-  res.json(business);
-});
+// server.post('/', async (req, res) => {
+//   const business = await new Business(req.body).save();
+//   res.json({ business, message: 'Successfully put up a business' });
+// });
