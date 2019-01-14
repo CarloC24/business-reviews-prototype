@@ -11,6 +11,15 @@ const BusinessSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: 'You must supply an author'
+    },
+    location: {
+      type: String,
+      default: 'Point',
+      address: {
+        type: String,
+        required: 'You must supply a address'
+      },
+      coordinates: [{ type: Number, required: 'You must supply a number' }]
     }
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
