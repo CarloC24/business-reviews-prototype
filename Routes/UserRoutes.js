@@ -11,8 +11,7 @@ router.post('/register', async (req, res) => {
   //   await register(user, req.body.password);
   User.register(user, req.body.password, function(err, user) {
     if (err) {
-      console.log(err);
-      return res.json({ message: 'Bad Request' });
+      return res.json({ message: 'Unsuccessful Register' });
     }
     res.json({ message: 'Check the schema' });
   });

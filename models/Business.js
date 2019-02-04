@@ -12,6 +12,9 @@ const BusinessSchema = new mongoose.Schema(
       ref: 'User',
       required: 'You must supply an author'
     },
+    count: {
+      type: Number
+    },
     location: {
       type: String,
       default: 'Point',
@@ -19,7 +22,7 @@ const BusinessSchema = new mongoose.Schema(
         type: String,
         required: 'You must supply a address'
       },
-      coordinates: [{ type: Number, required: 'You must supply a number' }]
+      coordinates: [{ type: Number, required: 'You must supply coordinates' }]
     }
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
